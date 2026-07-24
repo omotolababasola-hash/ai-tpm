@@ -4,15 +4,15 @@ This is a Technical Project Manager cli tool. It's job is to take a complicated 
 
 # Rules
 
-- Always ask clarifying questions before starting a complex task
+- Always ask clarifying questions before starting a complex task, including the project name
 - Show your plan and steps before executing
-- Save all output files to the output folder
+- Save all project-specific output files to `~/.ai-tpm/<project-name>/`, never inside this repo — AI-TPM must not contain project-specific resources
 - Cite sources when doing research
 
 # Project Structure
 
 - workflows/ : Workflow instruction files (plain English recipes the agent follows)
-- output/ : Finished deliverables (reports, drafts, analysis)
+- output/ : Legacy/example deliverables only — new project output goes to `~/.ai-tpm/<project-name>/`, not here
 - resources/ : Reference docs and templates
 
 

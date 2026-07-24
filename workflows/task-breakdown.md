@@ -16,6 +16,7 @@ the task, I have 4 workers").
 
 ### 1. Ask clarifying questions before doing anything else
 Do not start researching or decomposing until you understand the scope. At minimum, confirm:
+- **Project name** — a short name/slug used to create the project's output folder (see Step 5). Must be unique among folders already in `~/.ai-tpm/`.
 - **Task scope and definition of done** — what does "complete" mean for the overall task?
 - **Number of workers** and whether they're interchangeable or have different skills/specialties.
 - **Hard constraints** — deadline, budget, required tools/systems, anything that can't change.
@@ -58,11 +59,18 @@ Use list scheduling (longest-processing-time-first), respecting `depends_on`, ac
 6. Record the `critical_path` — the dependency chain that determines the makespan.
 
 ### 5. Write the output
-Save two files to `output/`, named from a slug of the task title:
-- `output/<slug>-workstreams.json` — structured data following the schema in
-  [resources/workstream-schema.json](../resources/workstream-schema.json), ready to feed the future Asana workflow.
-- `output/<slug>-summary.md` — human-readable summary: task recap, workstream
-  list with dependencies, per-worker assignment table, ETA, and cited sources.
+AI-TPM itself must never accumulate project-specific files — all deliverables
+live outside this repo, under a per-project folder in `~/.ai-tpm/`.
+- If `~/.ai-tpm/` doesn't exist, create it.
+- Create `~/.ai-tpm/<project-name>/` using the project name from Step 1 (slugified).
+- Save two files there:
+  - `~/.ai-tpm/<project-name>/<slug>-workstreams.json` — structured data
+    following the schema in
+    [resources/workstream-schema.json](../resources/workstream-schema.json),
+    ready to feed the future Asana workflow.
+  - `~/.ai-tpm/<project-name>/<slug>-summary.md` — human-readable summary:
+    task recap, workstream list with dependencies, per-worker assignment
+    table, ETA, and cited sources.
 
 ### 6. Report back
 Give the user a short summary: number of workstreams, ETA (date + business
