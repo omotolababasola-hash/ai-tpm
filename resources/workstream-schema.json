@@ -1,0 +1,43 @@
+{
+  "$comment": "Reference schema for the structured output produced by workflows/task-breakdown.md. Not machine-validated yet — kept here as the template the agent fills in.",
+  "task": {
+    "title": "string",
+    "description": "string",
+    "requested_by": "string (email or name)",
+    "date": "YYYY-MM-DD",
+    "num_workers": "number",
+    "sources": [
+      { "title": "string", "url": "string", "note": "why this source was used" }
+    ]
+  },
+  "workstreams": [
+    {
+      "id": "WS-1",
+      "title": "string",
+      "description": "string — specific enough that a worker could pick it up cold",
+      "definition_of_done": "string",
+      "depends_on": ["WS-id", "..."],
+      "estimated_hours": "number",
+      "skills_required": ["string"],
+      "risk_notes": "string (optional) — flag anything uncertain about the estimate or scope"
+    }
+  ],
+  "schedule": {
+    "algorithm": "list scheduling (longest-processing-time-first), respecting depends_on, across num_workers",
+    "worker_count": "number",
+    "assignments": [
+      {
+        "worker": "worker-1",
+        "workstream_ids": ["WS-1", "WS-4"],
+        "total_hours": "number"
+      }
+    ],
+    "critical_path": ["WS-id", "..."],
+    "eta": {
+      "total_effort_hours": "number — sum of all estimated_hours",
+      "wall_clock_hours": "number — makespan given num_workers and dependencies",
+      "wall_clock_business_days": "number (8h/day)",
+      "estimated_completion_date": "YYYY-MM-DD"
+    }
+  }
+}
